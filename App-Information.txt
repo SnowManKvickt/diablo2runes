@@ -1,0 +1,6 @@
+Generally this web application is meant to help Diablo 2 players find out what runes are required for upgrading and socketing.
+I'm thinking first of Runes. Then maybe add gems and different crafting receipes for items/rings/charms and such.
+Aspects:
+
+> Design modern with vueify.
+> <input>  button with v-model you type in "G" and Rune matches show up ie: "Gul" rune.
