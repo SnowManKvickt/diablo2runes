@@ -17,16 +17,9 @@
               append-item
               return-object
               :clearable="true"
-              outlined
-              chips
-              small-chips
-              dense
               @change="onChange"
             ></v-autocomplete>
           </v-card-text>
-          <v-divider></v-divider>
-    <v-expand-transition>
-    </v-expand-transition>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
@@ -45,11 +38,12 @@
           </v-toolbar>
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title v-if="cubeResult" class="headline mb-1">{{cubeResult.name}}</v-list-item-title>
-              <v-list-item-subtitle> etc -> {{selectedRune}} - {{cubeResult}}</v-list-item-subtitle>
+              <div class="overline mb-4">OVERLINE</div>
+              <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
+              <v-list-item-subtitle>{{model}}</v-list-item-subtitle>
             </v-list-item-content>
 
-            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color="grey"><img :src="require(`@/assets/images/runes/${cubeResult.name}.png`)"> </v-list-item-avatar>
+            <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
           </v-list-item>
 
           <v-card-actions>
@@ -68,16 +62,11 @@ export default {
   data() {
     return {
       runes,
-      states: runes.runes,
-      cubeResult: {
-        name: null,
-        count: null,
-        gems: null,
-      },
-      selectedRune: null,
       hasSaved: false,
       isEditing: true,
       model: null,
+      states: runes.runes,
+      nextRune: null,
     };
   },
 
@@ -93,11 +82,13 @@ export default {
       let result = textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
       return result;
     },
-    onChange(activeRune) {
-      console.log("onChange one:", activeRune);
-      this.$set(this.cubeResult, "name", activeRune.next);
-      this.$set(this, "selectedRune", activeRune.name);
+    save() {
+      this.isEditing = !this.isEditing;
+      this.hasSaved = true;
     },
+    onChange() {
+      console.log("changed")
+    }
   },
 };
 </script>

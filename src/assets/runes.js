@@ -1,36 +1,9 @@
-module.exports = {
-            "common" : {
-                "el": {
-                    "next" : "eld",
-                    "count" : "3"
-                },
-                "eld": {
-                    "next" : "tir",
-                    "count" : "3"
-                },
-                "tir": {
-                    "next" : "nef",
-                    "count" : "3"
-                },
-                "nef": {
-                    "next" : "eth",
-                    "count" : "3"
-                },
-                "eth": {
-                    "next" : "ith",
-                    "count" : "3"
-                },
-                "ith": {
-                    "next" : "tal",
-                    "count" : "3"
-                },
-                "tal": {
-                    "next" : "ral",
-                    "count" : "3"
-                },
-                "ral": {
-                    "next" : "ort",
-                    "count" : "3"
-                }
-            }
-}
+export let runes = [
+    { name: "el", next: "eld", count: 3, id: 1 },
+    { name: "eld", next: "tir", count: 3, id: 2 },
+    { name: "tir", next: "nef", count: 3, id: 3 },
+    { name: "nef", next: "eth", count: 3, id: 4 },
+    { name: "ith", next: "tal", count: 3, id: 5 },
+    { name: "tal", next: "ral", count: 3, id: 6 },
+
+  ]

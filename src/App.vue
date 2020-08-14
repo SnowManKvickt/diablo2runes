@@ -6,18 +6,9 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="https://crackanutshell.com/wp-content/uploads/sneakdelivs/diablo-cube.png"
           transition="scale-transition"
           width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
         />
       </div>
 
@@ -30,22 +21,14 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <Search />
-          </v-col>
-        </v-row>
-      </v-container>
+        <Search />
     </v-main>
     <v-footer padless>
-    <v-col
-      class="text-center"
-      cols="12"
-    >
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-    </v-col>
-  </v-footer>
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} —
+        <strong>Diablo.LadderStats.com</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
