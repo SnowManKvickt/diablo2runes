@@ -13,7 +13,7 @@
               :filter="customFilter"
               color="white"
               item-text="name"
-              label="State"
+              label="Search recipe"
               append-item
               return-object
               :clearable="true"
@@ -25,14 +25,9 @@
             ></v-autocomplete>
           </v-card-text>
           <v-divider></v-divider>
-    <v-expand-transition>
-    </v-expand-transition>
+          <v-expand-transition></v-expand-transition>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
-              Clear
-              <v-icon right>mdi-close-circle</v-icon>
-            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -44,18 +39,18 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-list-item three-line>
-            <v-list-item-content>
+            <v-list-item-content v-show="cubeResult.name != null">
               <v-list-item-title v-if="cubeResult" class="headline mb-1">{{cubeResult.name}}</v-list-item-title>
-              <v-list-item-subtitle> etc -> {{selectedRune}} - {{cubeResult}}</v-list-item-subtitle>
+              <v-list-item-subtitle>
+                <p v-if="cubeResult.count">{{cubeResult.count}} {{cubeResult.selectedRune}} <span v-if="cubeResult.gems">+ 1 <img aspect-ratio="1" :src="require(`@/assets/images/runes/gems/${cubeResult.gems}.png`)"> {{cubeResult.gems}}</span> </p> will give you <b>one</b>
+                <h3>{{cubeResult.name}}</h3>
+              </v-list-item-subtitle>
             </v-list-item-content>
 
-            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color="grey"><img :src="require(`@/assets/images/runes/${cubeResult.name}.png`)"> </v-list-item-avatar>
+            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color="grey">
+              <img :src="require(`@/assets/images/runes/${cubeResult.name}.png`)" />
+            </v-list-item-avatar>
           </v-list-item>
-
-          <v-card-actions>
-            <v-btn text>Button</v-btn>
-            <v-btn text>Button</v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -71,10 +66,10 @@ export default {
       states: runes.runes,
       cubeResult: {
         name: null,
+        selectedRune: null,
         count: null,
         gems: null,
       },
-      selectedRune: null,
       hasSaved: false,
       isEditing: true,
       model: null,
@@ -87,16 +82,25 @@ export default {
       const textTwo = item.next.toLowerCase();
       // What the user typed in
       const searchText = queryText.toLowerCase();
-      console.log("customFilter rune:", textOne);
-      console.log("customFilter next rune after:", textTwo);
-      console.log("customFilter searchText:", searchText);
-      let result = textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      let result =
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
       return result;
     },
     onChange(activeRune) {
       console.log("onChange one:", activeRune);
-      this.$set(this.cubeResult, "name", activeRune.next);
-      this.$set(this, "selectedRune", activeRune.name);
+      // Required when the user resets/deletes current search and the search has no object props such as activeRune.next (next rune).
+      if (activeRune !== undefined) {
+        this.$set(
+          this,
+          "cubeResult",
+          Object.assign({
+            name: activeRune.next,
+            selectedRune: activeRune.name,
+            gems: activeRune.gems.required === true ? (activeRune.gems.name).toLowerCase() : false,
+            count: activeRune.count,
+          })
+        );
+      }
     },
   },
 };

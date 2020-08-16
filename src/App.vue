@@ -1,5 +1,8 @@
 <template>
   <v-app>
+    <v-navigation-drawer app dark>
+    <!-- -->
+  </v-navigation-drawer>
     <v-app-bar app color="secondary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -23,7 +26,7 @@
     <v-main>
         <Search />
     </v-main>
-    <v-footer padless>
+    <v-footer padless dark>
       <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} —
         <strong>Diablo.LadderStats.com</strong>
