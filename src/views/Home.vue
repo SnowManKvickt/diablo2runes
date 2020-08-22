@@ -1,11 +1,11 @@
 <template>
-  <v-container class="fill-height">
+  <v-container class="">
     <v-row align="center" justify="center">
-      <v-col cols="5" sm="10" md="5">
+      <v-col cols="12" sm="6" md="6">
         <v-card class="overflow-hidden" color="secondary lighten-1" dark>
           <v-toolbar flat color="brown">
             <v-icon>mdi-cube-scan</v-icon>
-            <v-toolbar-title class="font-weight-light">Diablo 2 Cube Receipes</v-toolbar-title>
+            <v-toolbar-title class="font-weight-light">Diablo 2 Rune Upgrades</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <v-autocomplete
@@ -31,8 +31,8 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col cols="5" sm="5" md="2">
-        <v-card class="overflow-hidden mx-auto" color="secondary lighten-1" max-width="auto" dark>
+      <v-col cols="12" sm="4" md="4">
+        <v-card class="mx-auto" color="secondary lighten-1" max-width="auto" dark>
           <v-toolbar flat color="brown">
             <v-icon>mdi-cube</v-icon>
             <v-toolbar-title class="font-weight-light">The result</v-toolbar-title>
@@ -41,12 +41,17 @@
           <v-list-item three-line>
             <v-list-item-content v-show="cubeResult.name != null">
               <v-list-item-title v-if="cubeResult" class="headline mb-1">{{cubeResult.name}}</v-list-item-title>
-              <v-list-item-subtitle>
-                <p v-if="cubeResult.count">{{cubeResult.count}} {{cubeResult.selectedRune}} <span v-if="cubeResult.gems">+ 1 <img aspect-ratio="1" :src="require(`@/assets/images/runes/gems/${cubeResult.gems}.png`)"> {{cubeResult.gems}}</span> will give you <b>one</b> {{cubeResult.name}}  </p>
-              </v-list-item-subtitle>
+              <v-list-item-title>
+                <h4 v-if="cubeResult.count && cubeResult.selectedRune !== 'zod'">
+                  {{cubeResult.count}} {{cubeResult.selectedRune}} 
+                  <span v-if="cubeResult.gems">+ 1 <img aspect-ratio="1" :src="require(`@/assets/images/runes/gems/${cubeResult.gems}.png`)"> 
+                  <b> {{cubeResult.gems}} </b> </span> will give you <b>one</b> 
+                  {{cubeResult.name}} </h4>
+                  <h4 v-else> Zod is the highest rune!  </h4>
+              </v-list-item-title>
             </v-list-item-content>
 
-            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="64" color="grey">
+            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color="">
               <img :src="require(`@/assets/images/runes/${cubeResult.name}.png`)" />
             </v-list-item-avatar>
           </v-list-item>

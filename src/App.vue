@@ -1,41 +1,44 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app dark>
-    <!-- -->
-  </v-navigation-drawer>
-    <v-app-bar app color="secondary" dark>
-      <div class="d-flex align-center">
-        <v-img
+  <v-app id="inspire">
+    <v-navigation-drawer app dark v-model="drawer">
+      <NavigationDrawer></NavigationDrawer>
+    </v-navigation-drawer>
+    <v-app-bar
+      app
+      color="brown"
+      dark
+    >
+      <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://crackanutshell.com/wp-content/uploads/sneakdelivs/diablo-cube.png"
+          :src="require(`../public/static/images/diablo.gif`)"
           transition="scale-transition"
-          width="40"
+          width="64"
         />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>
+        <strong> Diablo.LadderStats.com</strong>
+        </v-toolbar-title>
     </v-app-bar>
 
     <v-main>
-        <Search />
+      <v-container>
+      <!-- <Search /> -->
+    <router-view> </router-view>
+    </v-container>
     </v-main>
-    <v-footer padless dark>
+    <!-- <v-footer padless dark>
       <v-col class="text-center" cols="12">
         {{ new Date().getFullYear() }} —
         <strong>Diablo.LadderStats.com</strong>
       </v-col>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
 <script>
+import NavigationDrawer from "./components/NavigationDrawer";
 import Search from "./components/Search";
 
 export default {
@@ -43,15 +46,16 @@ export default {
 
   components: {
     Search,
+    NavigationDrawer,
   },
 
   data: () => ({
-    //
+    drawer: null,
   }),
 };
 </script>
 <style scoped>
 .theme--light.v-application {
-  background-image: url("../public/static/images/bg1.jpg");
+  background-image: url("../public/static/images/bg3.jpg");
 }
 </style>
