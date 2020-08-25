@@ -12,13 +12,13 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          :src="require(`../public/static/images/diablo.gif`)"
+          :src="require(`@/assets/images/characters/cow.gif`)"
           transition="scale-transition"
           width="64"
         />
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <strong> Diablo.LadderStats.com</strong>
+        <strong>Diablo.LadderStats.com</strong>
         </v-toolbar-title>
     </v-app-bar>
 
@@ -39,13 +39,11 @@
 
 <script>
 import NavigationDrawer from "./components/NavigationDrawer";
-import Search from "./components/Search";
 
 export default {
   name: "App",
 
   components: {
-    Search,
     NavigationDrawer,
   },
 
@@ -56,6 +54,7 @@ export default {
 </script>
 <style scoped>
 .theme--light.v-application {
-  background-image: url("../public/static/images/bg3.jpg");
+  background-size:cover;
+  background-image: url("../public/static/images/bg1.jpg");
 }
 </style>

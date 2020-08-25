@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CharacterBuilds from '../views/CharacterBuilds.vue'
+import RuneWords from '../views/RuneWords.vue'
 
 Vue.use(VueRouter)
 
@@ -9,12 +10,17 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
-    path: '/CharacterBuilds',
+    path: '/runewords',
+    name: 'Runewords',
+    component: RuneWords,
+  },
+  {
+    path: '/characterbuilds',
     name: 'Characterbuilds',
-    component: CharacterBuilds
+    component: CharacterBuilds,
   },
   {
     path: '/about',
@@ -27,7 +33,7 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
-  testing: true, // not  sure if this works
+  testing: true, // not  sure if this property is valid ZULUL.
   routes
 })
 

@@ -63,7 +63,6 @@
           </v-list-item>
           <!-- Search result -->
         </v-card>
-        {{characterBuild.buildActive}}
       </v-col>
       <v-col cols="12" sm="11" md="11">
         <v-timeline :dense="true" :fill-dot="true" v-if="characterBuild.buildActive">

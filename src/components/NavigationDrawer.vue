@@ -24,6 +24,7 @@
         drawer: true,
         items: [
           { title: 'Runes', icon: 'mdi-view-dashboard', link: "/" },
+          { title: 'Runewords', icon: 'mdi-image', link: "/Runewords"},
           { title: 'Character Builds', icon: 'mdi-image', link: "/CharacterBuilds"},
           { title: 'About', icon: 'mdi-help-box', link: "/about" },
         ],
@@ -41,11 +42,6 @@
         expandOnHover: false,
         background: false,
       }
-    },
-    computed: {
-      bg () {
-        return this.background ? 'https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg' : undefined
-      },
     },
   }
 </script>

@@ -1,5 +1,5 @@
-<template>
-  <v-container class="">
+<template class="bg">
+  <v-container>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="6">
         <v-card class="overflow-hidden" color="secondary lighten-1" dark>
