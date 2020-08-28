@@ -31,6 +31,7 @@ export let armor = [{
     stats: ["Magic Damage Reduced by 3", "+6 to Dexterity", "+15 to Maximum Stamina", "+30% Poison Resist", "Regenerate Mana 15%", "25% Faster Run/Walk", "25% Faster Cast Rate", "25% Faster Hit Recovery"],
     id: 4,
     ladderOnly: false,
+  },
   {
     name: "Wealth",
     type: "3 Socket Body Armor",
