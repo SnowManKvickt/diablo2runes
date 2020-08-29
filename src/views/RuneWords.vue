@@ -49,14 +49,13 @@
                 <v-card-subtitle class="subheading font-weight-bold"> {{item.runeCombination}}</v-card-subtitle>
                 <v-card-subtitle class="subheading font-weight-bold">{{ item.type }}</v-card-subtitle>
                 <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-list-item-content>
+                <v-list>
+                  <v-list-item-group>
                   <v-list-item class="text-center" v-for="(key, index) in item.stats" :key="index.id">
                     <v-list-item-subtitle class=""> {{key}}</v-list-item-subtitle>
                   </v-list-item>
-                </v-list-item-content>
-                </v-card-actions>
+                </v-list-item-group>
+                </v-list>
               </v-card>
             </v-col>
           </v-row>
@@ -66,10 +65,10 @@
         <!-- items per page -->
         <template v-slot:footer>
           <v-row class="mt-2" align="center" justify="center">
-            <span class="grey--text">Items per page</span>
+            <span class="warning--text">Items per page</span>
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn dark text color="primary" class="ml-2" v-bind="attrs" v-on="on">
+                <v-btn dark text color="warning" class="ml-2" v-bind="attrs" v-on="on">
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
                 </v-btn>
@@ -123,7 +122,6 @@ export default {
   },
   computed: {
     numberOfPages(d) {
-      console.log("numberOfPages: ",d.items)
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
     filteredKeys() {
@@ -132,22 +130,12 @@ export default {
   },
   methods: {
     myTest: (change) => {
-      console.log("Change: ", change);
       let defaultSelected = change != typeof undefined ? runeword.armor : this.set(runeword, change, true);
-      console.log("this.runeword.armor :", runeword);
       return defaultSelected;
     },
     onChange(data) {
-      console.log(this.keys.indexOf(data) > -1)
       this.$set(this, "sortBy", data);
-      console.log("onChange : ", data);
-      console.log("vue keys:", this.keys);
-      console.log("vue sortBy:", this.sortBy);
-      let runewords = Object.keys(this.runeword)
       this.items = this.runeword[data.toString()]
-      // return this.keys.filter((category) => category.indexOf(runewords) > -1);
-
-      // this.sortBy = data;
     },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
@@ -168,5 +156,8 @@ v-app {
 }
 .runeTitle {
   color: #ad8627;
+}
+.v-list-item__subtitle, .v-list-item__title {
+  white-space: pre-wrap;
 }
 </style>

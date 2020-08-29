@@ -25,7 +25,7 @@
         items: [
           { title: 'Runes', icon: 'mdi-view-dashboard', link: "/" },
           { title: 'Runewords', icon: 'mdi-image', link: "/Runewords"},
-          { title: 'Character Builds', icon: 'mdi-image', link: "/CharacterBuilds"},
+          /* { title: 'Character Builds', icon: 'mdi-image', link: "/CharacterBuilds"}, */
           { title: 'About', icon: 'mdi-help-box', link: "/about" },
         ],
         color: 'primary',
