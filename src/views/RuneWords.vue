@@ -133,7 +133,7 @@ export default {
       page: 1,
       itemsPerPage: 4,
       sortBy: "armor",
-      keys: ["armor", "helms"],
+      keys: ["armor", "helms", "shields"],
       items: this.myTest(),
     };
   },
