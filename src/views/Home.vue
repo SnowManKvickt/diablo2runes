@@ -43,18 +43,47 @@
               <v-list-item-title v-if="cubeResult" class="headline mb-1">{{cubeResult.name}}</v-list-item-title>
               <v-list-item-title>
                 <h4 v-if="cubeResult.count && cubeResult.selectedRune !== 'zod'">
-                  {{cubeResult.count}} {{cubeResult.selectedRune}} 
-                  <span v-if="cubeResult.gems">+ 1 <img aspect-ratio="1" :src="require(`@/assets/images/runes/gems/${cubeResult.gems}.png`)"> 
-                  <b> {{cubeResult.gems}} </b> </span> will give you <b>one</b> 
-                  {{cubeResult.name}} </h4>
-                  <h4 v-else> Zod is the highest rune!  </h4>
+                  {{cubeResult.count}} {{cubeResult.selectedRune}}
+                  <span v-if="cubeResult.gems">
+                    + 1
+                    <img
+                      aspect-ratio="1"
+                      :src="require(`@/assets/images/runes/gems/${cubeResult.gems}.png`)"
+                    />
+                    <b>{{cubeResult.gems}}</b>
+                  </span> will give you
+                  <b>one</b>
+                  {{cubeResult.name}}
+                </h4>
+                <h4 v-else>Zod is the highest rune!</h4>
               </v-list-item-title>
             </v-list-item-content>
 
-            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color="">
+            <v-list-item-avatar v-if="cubeResult && cubeResult.name" size="80" color>
               <img :src="require(`@/assets/images/runes/${cubeResult.name}.png`)" />
             </v-list-item-avatar>
           </v-list-item>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="12" md="12">
+        <v-card class="overflow-hidden" max-width="auto" color="white lighten-1 text--light" dark>
+          <v-toolbar flat color="brown">
+            <v-icon>mdi-cube</v-icon>
+            <v-toolbar-title class="font-weight-light">The result</v-toolbar-title>
+            <v-spacer></v-spacer>
+          </v-toolbar>
+          <v-card-text>
+            <p class="display-2 text--primary">be•nev•o•lent</p>
+            <p class="display-1 text--primary">be•nev•o•lent</p>
+            <p>adjective</p>
+            <div class="text--primary">
+              well meaning and kindly.
+              <br />"a benevolent smile"
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text color="deep-purple accent-4">Learn More</v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -100,7 +129,10 @@ export default {
           Object.assign({
             name: activeRune.next,
             selectedRune: activeRune.name,
-            gems: activeRune.gems.required === true ? (activeRune.gems.name).toLowerCase() : false,
+            gems:
+              activeRune.gems.required === true
+                ? activeRune.gems.name.toLowerCase()
+                : false,
             count: activeRune.count,
           })
         );

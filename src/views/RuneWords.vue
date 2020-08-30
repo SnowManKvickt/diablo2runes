@@ -2,7 +2,7 @@
   <v-container>
     <v-col cols="12" sm="12" md="12">
       <v-data-iterator
-      @change="onChange"
+        @change="onChange"
         :items="items"
         :items-per-page.sync="itemsPerPage"
         :page="page"
@@ -12,7 +12,7 @@
         hide-default-footer
       >
         <template v-slot:header>
-          <v-toolbar dark color="blue darken-3" class="">
+          <v-toolbar dark color="blue darken-3" class>
             <v-text-field v-model="search" clearable flat solo-inverted hide-details label="Search"></v-text-field>
             <template v-if="$vuetify.breakpoint.mdAndUp">
               <v-spacer></v-spacer>
@@ -26,7 +26,16 @@
                 :items="keys"
                 label="Sort by"
               ></v-select>
-              <!-- search field for selecing the category to sort from. -->
+              <!-- search field for sorting by 'Character Class' the category to sort from. -->
+              <v-overflow-btn
+                :items="dropdown_font"
+                flat
+                solo-inverted
+                label="sort by class"
+                hide-details
+                class="ml-2 pa-0"
+              ></v-overflow-btn>
+              <!-- search field for sorting by C'haracter Class' the category to sort from. -->
               <v-spacer></v-spacer>
               <v-btn-toggle v-model="sortDesc" mandatory>
                 <v-btn large depressed color="blue" :value="false">
@@ -44,17 +53,28 @@
         <template v-slot:default="props">
           <v-row>
             <v-col v-for="item in props.items" :key="item.id" cols="12" sm="6" md="4" lg="3">
-              <v-card height="auto" shaped>
-                <v-card-title class="subheading font-weight-bold text-center runeTitle">{{ item.name }}</v-card-title>
-                <v-card-subtitle class="subheading font-weight-bold"> {{item.runeCombination}}</v-card-subtitle>
-                <v-card-subtitle class="subheading font-weight-bold">{{ item.type }}</v-card-subtitle>
+              <v-card fill-height shaped>
+                <v-card-title class="subheading text-center runeTitle">{{ item.name }}</v-card-title>
+                <v-card-subtitle
+                  class="subheading font-weight-bold text-center runeCombination py-0"
+                >{{item.runeCombination}}</v-card-subtitle>
+                <v-card-subtitle
+                  class="subheading font-weight-bold text-center py-0"
+                >{{ item.type }}</v-card-subtitle>
+                <v-card-subtitle
+                  class="subheading font-weight-bold text-center py-0"
+                >{{ item.lvlreq }}</v-card-subtitle>
                 <v-divider></v-divider>
-                <v-list>
+                <v-list dense>
                   <v-list-item-group>
-                  <v-list-item class="text-center" v-for="(key, index) in item.stats" :key="index.id">
-                    <v-list-item-subtitle class=""> {{key}}</v-list-item-subtitle>
-                  </v-list-item>
-                </v-list-item-group>
+                    <v-list-item
+                      class="text-center"
+                      v-for="(key, index) in item.stats"
+                      :key="index.id"
+                    >
+                      <v-list-item-subtitle class>{{key}}</v-list-item-subtitle>
+                    </v-list-item>
+                  </v-list-item-group>
                 </v-list>
               </v-card>
             </v-col>
@@ -113,10 +133,7 @@ export default {
       page: 1,
       itemsPerPage: 4,
       sortBy: "armor",
-      keys: [
-        "armor",
-        "helms", 
-      ],
+      keys: ["armor", "helms"],
       items: this.myTest(),
     };
   },
@@ -130,12 +147,15 @@ export default {
   },
   methods: {
     myTest: (change) => {
-      let defaultSelected = change != typeof undefined ? runeword.armor : this.set(runeword, change, true);
+      let defaultSelected =
+        change != typeof undefined
+          ? runeword.armor
+          : this.set(runeword, change, true);
       return defaultSelected;
     },
     onChange(data) {
       this.$set(this, "sortBy", data);
-      this.items = this.runeword[data.toString()]
+      this.items = this.runeword[data.toString()];
     },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
@@ -155,9 +175,17 @@ v-app {
   background-image: url("https://filecdn015924bits1.ladderstats.com/diablo2/bgs/scosglen.jpg");
 }
 .runeTitle {
-  color: #ad8627;
+  color: rgb(202, 160, 52);
+  /* color: #ad8627; */
 }
-.v-list-item__subtitle, .v-list-item__title {
+.v-list-item__subtitle,
+.v-list-item__title {
   white-space: pre-wrap;
+}
+.v-card__title {
+  display: block;
+}
+.v-card__subtitle.runeCombination {
+  color: #5f3808;
 }
 </style>
