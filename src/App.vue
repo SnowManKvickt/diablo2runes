@@ -3,37 +3,34 @@
     <v-navigation-drawer app dark v-model="drawer">
       <NavigationDrawer></NavigationDrawer>
     </v-navigation-drawer>
-    <v-app-bar
-      app
-      color="brown"
-      dark
-    >
+    <v-app-bar app dark>
       <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          :src="require(`@/assets/images/characters/cow.gif`)"
-          transition="scale-transition"
-          width="64"
-        />
+        alt="Vuetify Logo"
+        class="shrink mr-2"
+        contain
+        :src="require(`@/assets/images/characters/logo.png`)"
+        transition="scale-transition"
+        width="64"
+      />
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <strong>Diablo.LadderStats.com</strong>
-        </v-toolbar-title>
+        <strong>Diablo.ladderstats.com</strong>
+      </v-toolbar-title>
     </v-app-bar>
 
     <v-main>
       <v-container>
-      <!-- <Search /> -->
-    <router-view> </router-view>
-    </v-container>
+        <!-- <Search /> -->
+        <router-view> </router-view>
+      </v-container>
     </v-main>
-    <!-- <v-footer padless dark>
+    <v-footer padless dark>
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} —
-        <strong>Diablo.LadderStats.com</strong>
+        <p class="subtitle-1 mb-auto">
+          &copy; Diablo.LadderStats.com  - {{ new Date().getFullYear() }} - This site is not associated or maintained by &copy; Blizzard Entertainment.
+        </p>
       </v-col>
-    </v-footer> -->
+    </v-footer>
   </v-app>
 </template>
 
@@ -42,7 +39,10 @@ import NavigationDrawer from "./components/NavigationDrawer";
 
 export default {
   name: "App",
-
+  mounted() {
+    let route = this.$route;
+    console.log("App mounted route: ", route);
+  },
   components: {
     NavigationDrawer,
   },
@@ -54,7 +54,8 @@ export default {
 </script>
 <style scoped>
 .theme--light.v-application {
-  background-size:cover;
-  background-image: url("../public/static/images/bg1.jpg");
+  color: white;
+  background-size: cover;
+  background-image: url("../public/static/images/classes-bg-druid-max.jpg");
 }
 </style>

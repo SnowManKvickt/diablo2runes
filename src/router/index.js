@@ -23,11 +23,11 @@ Vue.use(VueRouter)
     name: 'About',
     component: About,
   },
-  /* {
+  {
     path: '/characterbuilds',
     name: 'Characterbuilds',
     component: CharacterBuilds,
-  }, */
+  },
 ]
 
 const router = new VueRouter({

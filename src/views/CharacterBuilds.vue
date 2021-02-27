@@ -96,7 +96,6 @@ import * as chars from "@/assets/CharacterBuilds.js";
 export default {
   data() {
     return {
-      model: null,
       characterBuild: {
         characterSelected: null,
         // True if selected from search/dropdown.

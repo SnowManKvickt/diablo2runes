@@ -12,8 +12,15 @@
         hide-default-footer
       >
         <template v-slot:header>
-          <v-toolbar dark color="blue darken-3" class>
-            <v-text-field v-model="search" clearable flat solo-inverted hide-details label="Search"></v-text-field>
+          <v-toolbar dark color="brown darken-3 mb-5" class>
+            <v-text-field
+              v-model="search"
+              clearable
+              flat
+              solo-inverted
+              hide-details
+              label="Search"
+            ></v-text-field>
             <template v-if="$vuetify.breakpoint.mdAndUp">
               <v-spacer></v-spacer>
               <!-- search field for selecing the category to sort from. -->
@@ -28,7 +35,6 @@
               ></v-select>
               <!-- search field for sorting by 'Character Class' the category to sort from. -->
               <v-overflow-btn
-                :items="dropdown_font"
                 flat
                 solo-inverted
                 label="sort by class"
@@ -52,27 +58,44 @@
         <!-- Main card iterations will render here -->
         <template v-slot:default="props">
           <v-row>
-            <v-col v-for="item in props.items" :key="item.id" cols="12" sm="6" md="4" lg="3">
-              <v-card fill-height shaped>
-                <v-card-title class="subheading text-center runeTitle">{{ item.name }}</v-card-title>
-                <v-card-subtitle
-                  class="subheading font-weight-bold text-center runeCombination py-0"
-                >{{item.runeCombination}}</v-card-subtitle>
-                <v-card-subtitle
-                  class="subheading font-weight-bold text-center py-0"
-                >{{ item.type }}</v-card-subtitle>
-                <v-card-subtitle
-                  class="subheading font-weight-bold text-center py-0"
-                >{{ item.lvlreq }}</v-card-subtitle>
-                <v-divider></v-divider>
-                <v-list dense>
+            <v-col
+              v-for="item in props.items"
+              class=""
+              :key="item.id"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <v-card class="rune item-bg" fill-height shaped>
+                <div class="item-header">
+                  <v-card-title class="headline text-center runeTitle">{{
+                    item.name
+                  }}</v-card-title>
+                  <v-card-subtitle
+                    class="subheading font-weight-bold text-center runeCombination py-0"
+                    >{{ item.runeCombination }}</v-card-subtitle
+                  >
+                  <v-card-subtitle
+                    class="subheading font-weight-bold text-center gearType py-0"
+                    >{{ item.type }}</v-card-subtitle
+                  >
+                  <v-card-subtitle
+                    class="subheading font-weight-bold text-center levelRequirement py-0"
+                    >{{ item.lvlreq }}</v-card-subtitle
+                  >
+                </div>
+                <!-- <v-divider></v-divider> -->
+                <v-list dense dark>
                   <v-list-item-group>
                     <v-list-item
-                      class="text-center"
+                      class="text-center dark-item"
                       v-for="(key, index) in item.stats"
                       :key="index.id"
                     >
-                      <v-list-item-subtitle class>{{key}}</v-list-item-subtitle>
+                      <v-list-item-subtitle class="text-light subtitle-1">{{
+                        key
+                      }}</v-list-item-subtitle>
                     </v-list-item>
                   </v-list-item-group>
                 </v-list>
@@ -88,7 +111,14 @@
             <span class="warning--text">Items per page</span>
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn dark text color="warning" class="ml-2" v-bind="attrs" v-on="on">
+                <v-btn
+                  dark
+                  text
+                  color="warning"
+                  class="ml-2"
+                  v-bind="attrs"
+                  v-on="on"
+                >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
                 </v-btn>
@@ -106,11 +136,25 @@
 
             <v-spacer></v-spacer>
 
-            <span class="mr-4 grey--text">Page {{ page }} of {{ numberOfPages }}</span>
-            <v-btn fab dark color="blue darken-3" class="mr-1" @click="formerPage">
+            <span class="mr-4 grey--text"
+              >Page {{ page }} of {{ numberOfPages }}</span
+            >
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="mr-1"
+              @click="formerPage"
+            >
               <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
-            <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="ml-1"
+              @click="nextPage"
+            >
               <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
           </v-row>
@@ -170,14 +214,51 @@ export default {
 };
 </script>
 <style scoped>
-v-app {
-  background-size: fill;
-  background-image: url("https://filecdn015924bits1.ladderstats.com/diablo2/bgs/scosglen.jpg");
+.item-bg {
+  background-image: url("../../public/static/images/frame.png");
+  background-size: contain;
+  background-repeat: round;
 }
-.runeTitle {
-  color: rgb(202, 160, 52);
-  /* color: #ad8627; */
+
+/* .theme--light.v-card {
+  background-color: hsl(0deg 0% 100% / 12%);
+  background-image: url("../../public/static/images/btn-primary-sheet-lg-main.jpg");
+  background-size: cover;
+  background-repeat: round;
+  color: #2f628a;
+} */
+
+/* .v-list {
+  background-image: url("../../public/static/images/btn-secondary-sheet-sm.jpg");
+  background-repeat: round;
+  color: rgba(0, 0, 0, 0.87);
+} */
+
+/* .item-header {
+  background-color: hsl(0deg 0% 100% / 12%);
+  background-image: url("../../public/static/images/frame.png");
+  background-size: cover;
+  background-repeat: round;
+  color: #2f628a;
+} */
+
+.rune {
+  background-color: hsl(0deg 0% 100% / 0%);
+  color: rgba(0, 0, 0, 0.87);
 }
+
+/* .theme--light.v-list {
+  background: #ffffff8f;
+  color: rgba(0, 0, 0, 0.87);
+} */
+
+.dark-item {
+  background-image: url("../../public/static/images/btn-secondary-sheet-sm.jpg");
+  background-repeat: space;
+  background-size: cover;
+  padding: 0.4em;
+}
+.v-list,
 .v-list-item__subtitle,
 .v-list-item__title {
   white-space: pre-wrap;
@@ -185,7 +266,20 @@ v-app {
 .v-card__title {
   display: block;
 }
-.v-card__subtitle.runeCombination {
-  color: #5f3808;
+
+.runeTitle {
+  color: rgb(255 184 0);
+  /* color: rgb(202, 160, 52); */
+  /* color: #ad8627; */
+}
+
+.theme--light.v-card .v-card__subtitle, .theme--light.v-card>.v-card__text .runeCombination {
+  color: #fff;
+}
+.gearType {
+  color: #fff;
+}
+.levelRequirement {
+  color: #fff;
 }
 </style>

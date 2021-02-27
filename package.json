@@ -7,20 +7,20 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@mdi/font": "^3.6.95",
-    "core-js": "^3.6.5",
+    "@mdi/font": "^5.9.55",
+    "core-js": "^3.9.0",
     "roboto-fontface": "*",
-    "vue": "^2.6.11",
-    "vue-router": "^3.4.3",
-    "vuetify": "^2.3.8",
-    "vuex": "^3.5.1"
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
+    "vuetify": "^2.4.5",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "^4.5.3",
-    "@vue/cli-service": "~4.5.0",
-    "vue-cli-plugin-vuetify": "^2.0.7",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-router": "^4.5.11",
+    "@vue/cli-service": "~4.5.11",
+    "vue-cli-plugin-vuetify": "^2.1.0",
+    "vue-template-compiler": "^2.6.12"
   },
   "browserslist": [
     "> 1%",
