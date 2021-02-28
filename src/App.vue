@@ -56,6 +56,6 @@ export default {
 .theme--light.v-application {
   color: white;
   background-size: cover;
-  background-image: url("../public/static/images/classes-bg-druid-max.jpg");
+  background-image: url("../public/static/images/backgrounds/classes-bg-sorceress-max.jpg");
 }
 </style>
