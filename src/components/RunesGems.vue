@@ -1,8 +1,61 @@
 <template class="bg">
   <v-container>
+    <v-row align="center" justify="space-between">
+      <v-col cols="12" sm="12" md="12" lg="12">
+        <v-card>
+    <v-toolbar
+      color="brown"
+      dark
+      flat
+    >
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Switch between Runes and Gems</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          align-with-title
+        >
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab
+            v-for="item in items"
+            :key="item"
+          >
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+
+    <v-tabs-items v-model="tab">
+      <v-tab-item
+        v-for="item in items"
+        :key="item"
+      >
+        <v-card flat>
+          <v-card-text v-text="text"></v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+  </v-card>
+      </v-col>
+    </v-row>
+
     <!-- <v-row align="center" justify="center"> -->
-    <v-row align="start">
-      <v-col cols="12" sm="12" md="12" lg="5">
+    <v-row align="center" justify="space-between">
+      <v-col cols="12" sm="12" md="12" lg="6">
         <v-card
           class="overflow-hidden"
           max-width="auto"
@@ -12,48 +65,33 @@
           <v-toolbar flat color="brown">
             <!-- <v-icon>mdi-cube</v-icon> -->
             <v-toolbar-title class="display-1 font-weight-light"
-              >About this site</v-toolbar-title
+              >Runes & Gems</v-toolbar-title
             >
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
             <div class="text--primary">
-              <div class="body-1">
-                <p>
-                  With the exciting announcement of
-                  <a target="_blank" href="https://diablo2.blizzard.com/"
-                    >Diablo 2 Resurrected</a
-                  >
-                  I created this website as a quick tool for both, veteran and
-                  new players alike to get up to speed on the Crafting and
-                  itemization aspects that exist in Diablo 2.
-                </p>
-                <p>
-                  Since Blizzard announced they will also update the original
-                  <a
-                    target="_blank"
-                    href="http://classic.battle.net/diablo2exp/"
-                    >Arreat Summit </a
-                  >website,
-                  <span class="subtitle-2">unfortunately (or not)</span> I
-                  skipped adding further game information.
-                </p>
-                <p>Regardless i hope some of you find this website useful!</p>
-              </div>
-            </div>
-            <div class="text-center">
-              <v-btn x-large color="brown" dark @click="sheet = !sheet">
-                show all runes
-              </v-btn>
+            <p class="display-1 text--primary">Get started</p>
+              <p>
+                This Website was created as a tool for new players, and old
+                players alike. We hope to ease the process of providing useful game information such as the most commonly used build orders for your current Character. There's a big variety of options to choose from,
+                depending on what suits you.
+              </p>
+              <p class="headline">Crafting</p>
+              <p>On the Runewords page, you can look up the blueprints for crafting powerful new gear. Either just look around, or sort by a Character Class or equipment type.</p>
+              <p>Runewords are created using armor that has socket slots and make up the very basis of progression in Diablo 2. Some are class specific, early game friendly or more expensive ones that require higher level runes.</p>
             </div>
           </v-card-text>
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="12" md="12" lg="7">
-        <!-- Select rune to show next upgrade -->
+      <v-col class="float-right" cols="4" sm="6" md="4">
+      <!-- Select rune to show next upgrade -->
         <v-card class="overflow-hidden" color="secondary lighten-1" dark>
-          <v-toolbar dark color="brown">
+          <v-toolbar
+            dark
+            color="brown"
+          >
             <v-icon>mdi-cube-scan</v-icon>
             <v-toolbar-title class="font-weight-light"
               >Diablo 2 Rune Upgrades</v-toolbar-title
@@ -66,6 +104,7 @@
               color="white"
               item-text="name"
               label="Search recipe"
+              append-item
               return-object
               :clearable="true"
               outlined
@@ -138,61 +177,14 @@
         </v-card>
         <!-- rune upgrade result card -->
       </v-col>
-      <v-col>
-      <div class="center">
-        <v-dialog v-model="sheet" width="auto" scrollable fullscreen>
-          <v-card>
-            <v-card-title class="headline white--text brown">
-              All Runes
-            </v-card-title>
-
-            <v-card-text>
-              <v-simple-table class="table-responsive">
-                <thead>
-                  <tr>
-                    <th class="text-left">
-                      Name
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in states" :key="item.name">
-                    <td>
-                      <img width="auto"
-                        :src="require(`@/assets/images/runes/${item.name}.png`)"
-                        
-                      >
-                      {{ item.name }}
-                    </td>
-                    <!-- <td>{{ item.next }}</td> -->
-                  </tr>
-                </tbody>
-              </v-simple-table>
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="sheet = !sheet">
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </div>
-      </v-col>
     </v-row>
   </v-container>
 </template>
-
 <script>
 import * as runes from "@/assets/runes.js";
 export default {
-  name: "Runes",
   data() {
     return {
-      runes,
       states: runes.runes,
       cubeResult: {
         name: null,
@@ -203,7 +195,6 @@ export default {
       hasSaved: false,
       isEditing: true,
       model: null,
-      sheet: false,
     };
   },
 

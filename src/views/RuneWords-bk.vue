@@ -2,15 +2,15 @@
   <v-container>
     <v-col cols="12" sm="12" md="12">
       <v-data-iterator
+        @change="onChange"
         :items="items"
         :items-per-page.sync="itemsPerPage"
         :page="page"
         :search="search"
-        :custom-sort="onChange"
         hide-default-footer
       >
         <template v-slot:header>
-          <v-toolbar rounded dark color="brown darken-1 mt-0 mb-3">
+          <v-toolbar dark color="brown darken-1 mt-0 mb-3" class>
             <v-text-field
               v-model="search"
               clearable
@@ -24,9 +24,9 @@
               <!-- search field for selecing the category to sort from. -->
               <v-select
                 v-model="sortBy"
+                @change="onChange"
                 flat
                 solo-inverted
-                clearable
                 hide-details
                 :items="keys"
                 label="Sort by"
@@ -36,7 +36,6 @@
                 class="ml-2 pa-0"
                 :items="characterClasses"
                 @change="sortByClass"
-                clearable
                 flat
                 solo-inverted
                 hide-details
@@ -58,28 +57,18 @@
               md="5"
               lg="3"
             >
-              <v-card class="rune item-bg" outlined shaped>
+              <v-card class="rune item-bg" fill-height shaped>
                 <div class="item-header">
-                  <v-card-title outlined class="headline text-center runeTitle"
-                    ><v-avatar v-if="item.image != undefined">
-                      <img
-                        contain
-                        :aspect-ratio="1"
-                        class=""
-                        max-width="64"
-                        width="64"
-                        :src="require(`@/assets/images/items/${item.image}`)"
-                      />
-                    </v-avatar>
-                    <p style="margin:0">{{ item.name }}</p></v-card-title
-                  >
+                  <v-card-title class="headline text-center runeTitle">{{
+                    item.name
+                  }}</v-card-title>
                   <v-card-subtitle
                     class="subheading font-weight-bold text-center runeCombination py-0"
                     >{{ item.runeCombination }}</v-card-subtitle
                   >
                   <v-card-subtitle
                     class="subheading font-weight-bold text-center gearType py-0"
-                    >{{ item.descType }}</v-card-subtitle
+                    >{{ item.type }}</v-card-subtitle
                   >
                   <v-card-subtitle
                     class="subheading font-weight-bold text-center levelRequirement py-0"
@@ -92,7 +81,7 @@
                     <v-list-item
                       class="text-center dark-item"
                       v-for="(key, index) in item.stats"
-                      :key="index"
+                      :key="index.id"
                     >
                       <v-list-item-subtitle class="text-light subtitle-1">{{
                         key
@@ -174,23 +163,12 @@ export default {
       runeword,
       itemsPerPageArray: [4, 8, 12],
       search: "",
-      filter: false,
+      filter: {},
       sortDesc: false,
       page: 1,
       itemsPerPage: 4,
-      sortBy: "",
-      keys: [
-        "armor",
-        "helmets",
-        "shields",
-        "weapons",
-        "belts",
-        "rings",
-        "charms",
-        "amulets",
-        "gloves",
-        "boots",
-      ],
+      sortBy: "armor",
+      keys: ["armor", "helms", "shields", "weapons"],
       characterClasses: [
         "amazon",
         "assassin",
@@ -200,30 +178,38 @@ export default {
         "sorceress",
         "druid",
       ],
-      items: runeword.items,
+      items: this.defaultCategory(),
     };
   },
   computed: {
-    numberOfPages() {
-      let items = this.filter > 0 ? this.filter : this.items.length;
-      return Math.ceil(items / this.itemsPerPage);
+    numberOfPages(d) {
+      return Math.ceil(this.items.length / this.itemsPerPage);
     },
     filteredKeys() {
       return this.keys.filter((key) => key !== `name`);
     },
   },
   methods: {
-    onChange(items) {
-      let filtered = items.filter((obj) => obj.type === this.sortBy);
-      if (filtered.length) {
-        this.filter = filtered.length;
-        return filtered;
-      } else if (!filtered.length) {
-        console.log("empty filtered!");
-        return items;
-      }
-      return items;
+    defaultCategory: (change) => {
+      let defaultSelected =
+        change != typeof undefined
+          ? runeword.armor
+          : this.set(runeword, change, true);
+      return defaultSelected;
     },
+    onChange(data) {
+      console.log("onChange: ", data);
+      console.log("onChange runewords: ", this.runeword);
+      this.$set(this, "sortBy", data);
+      this.items = this.runeword[data.toString()];
+    },
+    /* sortByClass(data) {
+      let filtered = this.items.filter((car => car.class === data));
+      this.items = filtered;
+      console.log("sortByClass: ", data);
+      console.log("sortByClass this.items: ", this.items);
+      console.log("sortByClass filtered: ", filtered);
+    }, */
     sortByClass(data) {
       this.search = data;
     },
@@ -240,12 +226,6 @@ export default {
 };
 </script>
 <style scoped>
-.theme--dark.v-list {
-  background: rgb(0 0 0 / 0%);
-}
-.itemAvatar {
-  position: absolute;
-}
 .item-bg {
   background-image: url("../../public/static/images/frame.png");
   background-size: contain;
@@ -266,7 +246,7 @@ export default {
   background-image: url("../../public/static/images/btn-secondary-sheet-sm.jpg");
   background-repeat: space;
   background-size: cover;
-  padding: 0.2em;
+  padding: 0.4em;
 }
 .v-list,
 .v-list-item__subtitle,

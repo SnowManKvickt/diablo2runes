@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import CharacterBuilds from '../views/CharacterBuilds.vue'
+// import Runes from '../views/Runes.vue'
+// import CharacterBuilds from '../views/CharacterBuilds.vue'
 import About from '../views/About.vue'
+import NotFound from '../views/NotFound.vue'
 import RuneWords from '../views/RuneWords.vue'
 
 Vue.use(VueRouter)
@@ -23,15 +25,20 @@ Vue.use(VueRouter)
     name: 'About',
     component: About,
   },
-  {
+  /* {
     path: '/characterbuilds',
     name: 'Characterbuilds',
     component: CharacterBuilds,
+  }, */
+  /* Will match all not found (404) */
+  {
+    path: "*",
+    component: NotFound,
   },
 ]
 
 const router = new VueRouter({
-  testing: true, // not  sure if this property is valid ZULUL.
+  testing: true, // can't remember if this property exists but.. meh.
   routes
 })
 

@@ -20,12 +20,13 @@ export default {
       items: [
         { title: "Runes", icon: "mdi-view-dashboard", link: "/" },
         { title: "Runewords", icon: "mdi-image", link: "/runewords" },
+        { title: "About", icon: "mdi-help-box", link: "/about" },
+        /* { title: "Runes", icon: "mdi-view-dashboard", link: "/runes" },
         {
           title: "Character Builds",
           icon: "mdi-image",
           link: "/characterbuilds",
-        },
-        { title: "About", icon: "mdi-help-box", link: "/about" },
+        }, */
       ],
       color: "primary",
       colors: ["primary", "blue", "success", "red", "teal"],

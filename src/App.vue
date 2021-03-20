@@ -19,15 +19,16 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <!-- <Search /> -->
+      <v-container fluid>
         <router-view> </router-view>
       </v-container>
     </v-main>
     <v-footer padless dark>
       <v-col class="text-center" cols="12">
         <p class="subtitle-1 mb-auto">
-          &copy; Diablo.LadderStats.com  - {{ new Date().getFullYear() }} - This site is not associated or maintained by &copy; Blizzard Entertainment.
+          &copy; Diablo.LadderStats.com - {{ new Date().getFullYear() }} - This
+          is a fan made website and is not associated or maintained by &copy;
+          Blizzard Entertainment.
         </p>
       </v-col>
     </v-footer>
@@ -39,14 +40,9 @@ import NavigationDrawer from "./components/NavigationDrawer";
 
 export default {
   name: "App",
-  mounted() {
-    let route = this.$route;
-    console.log("App mounted route: ", route);
-  },
   components: {
     NavigationDrawer,
   },
-
   data: () => ({
     drawer: null,
   }),

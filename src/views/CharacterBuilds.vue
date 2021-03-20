@@ -78,7 +78,7 @@
                     cols="12"
                     md="10"
                     v-html="item.message"
-                  >xd</v-col>
+                  ></v-col>
                   <v-col class="hidden-sm-and-down text-right" md="2">
                     <v-icon size="64">mdi-calendar-text</v-icon>
                   </v-col>
