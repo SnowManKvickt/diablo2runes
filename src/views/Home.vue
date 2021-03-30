@@ -39,6 +39,7 @@
                   skipped adding further game information.
                 </p>
                 <p>Regardless i hope some of you find this website useful!</p>
+                <p>If you wish to contact me about errors on the site or any other matter: <a target="_blank" href="mailto: carl@ladderstats.com">	carl@ladderstats.com</a></p>
               </div>
             </div>
             <div class="text-center">

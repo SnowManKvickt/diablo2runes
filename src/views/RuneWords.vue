@@ -94,7 +94,7 @@
                       v-for="(key, index) in item.stats"
                       :key="index"
                     >
-                      <v-list-item-subtitle class="text-light subtitle-1">{{
+                      <v-list-item-subtitle class="text-light body-1">{{
                         key
                       }}</v-list-item-subtitle>
                     </v-list-item>
@@ -219,7 +219,6 @@ export default {
         this.filter = filtered.length;
         return filtered;
       } else if (!filtered.length) {
-        console.log("empty filtered!");
         return items;
       }
       return items;

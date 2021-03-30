@@ -12,13 +12,13 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Items',
+    component: RuneWords,
   },
   {
-    path: '/runewords',
-    name: 'Runewords',
-    component: RuneWords,
+    path: '/runes',
+    name: 'runes',
+    component: Home,
   },
   {
     path: '/about',
@@ -38,6 +38,7 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   testing: true, // can't remember if this property exists but.. meh.
   routes
 })

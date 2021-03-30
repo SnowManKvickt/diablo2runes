@@ -18,8 +18,8 @@ export default {
     return {
       drawer: true,
       items: [
-        { title: "Runes", icon: "mdi-view-dashboard", link: "/" },
-        { title: "Runewords", icon: "mdi-image", link: "/runewords" },
+        { title: "Items", icon: "mdi-view-dashboard", link: "/" },
+        { title: "Runes", icon: "mdi-image", link: "/runes" },
         { title: "About", icon: "mdi-help-box", link: "/about" },
         /* { title: "Runes", icon: "mdi-view-dashboard", link: "/runes" },
         {

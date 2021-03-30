@@ -5,7 +5,7 @@
     </v-navigation-drawer>
     <v-app-bar app dark>
       <v-img
-        alt="Vuetify Logo"
+        alt="Diablo.ladderstats.com logo"
         class="shrink mr-2"
         contain
         :src="require(`@/assets/images/characters/logo.png`)"
