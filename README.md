@@ -1,5 +1,5 @@
 # diablo2runes
-
+Live at: https://diablo.ladderstats.com
 ## Project setup
 ```
 npm install
