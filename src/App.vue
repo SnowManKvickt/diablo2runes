@@ -1,57 +1,30 @@
-<template>
-  <v-app id="inspire">
-    <v-navigation-drawer app dark v-model="drawer">
-      <NavigationDrawer></NavigationDrawer>
-    </v-navigation-drawer>
-    <v-app-bar app dark>
-      <v-img
-        alt="Diablo.ladderstats.com logo"
-        class="shrink mr-2"
-        contain
-        :src="require(`@/assets/images/characters/logo.png`)"
-        transition="scale-transition"
-        width="64"
-      />
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <strong>Diablo.ladderstats.com</strong>
-      </v-toolbar-title>
-    </v-app-bar>
+<script setup>
+import HelloWorld from './components/HelloWorld.vue'
+</script>
 
-    <v-main>
-      <v-container fluid>
-        <router-view> </router-view>
-      </v-container>
-    </v-main>
-    <v-footer padless dark>
-      <v-col class="text-center" cols="12">
-        <p class="subtitle-1 mb-auto">
-          &copy; Diablo.LadderStats.com - {{ new Date().getFullYear() }} - This
-          is a fan made website and is not associated or maintained by &copy;
-          Blizzard Entertainment.
-        </p>
-      </v-col>
-    </v-footer>
-  </v-app>
+<template>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<script>
-import NavigationDrawer from "./components/NavigationDrawer";
-
-export default {
-  name: "App",
-  components: {
-    NavigationDrawer,
-  },
-  data: () => ({
-    drawer: null,
-  }),
-};
-</script>
 <style scoped>
-.theme--light.v-application {
-  color: white;
-  background-size: cover;
-  background-image: url("../public/static/images/backgrounds/classes-bg-sorceress-max.jpg");
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>

@@ -1,33 +1,5 @@
-# diablo2runes
-Live at: https://diablo.ladderstats.com
-## Project setup
-```
-npm install
-```
+# Vue 3 + Vite
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-### Raw images in includes Modules
-When referencing images in the imported module files such as CharacterBuilds.vue at the time i'm not sure how to parse images.
-```
-import * as chars from "@/assets/CharacterBuilds.js";
-```
-
-in the object array that will be parsed by the template as "raw html" with v-html so it is included from outside the build such as:
-```
-description: [{
-  name: "Character class description etc",
-  message: "<img src='http://mydomain.com/images/image.png'/> ",
-}]
-```
+Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
